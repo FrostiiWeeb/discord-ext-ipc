@@ -74,16 +74,16 @@ if match.group(3) is not None:
 
 
 setuptools.setup(
-    author="Ext-Creators",
+    author="Alex Hutz",
     classifiers=classifiers,
-    description="A discord.py extension for inter-process communication.",
+    description="A discord.py extension for inter-process communication. Continued by Alex Hutz.",
     extras_require=extras_require,
     install_requires=install_requires,
     license="Apache Software License",
-    name="discord-ext-ipc",
+    name="discord-next-ipc",
     packages=packages,
     project_urls=project_urls,
     python_requires=">=3.5.3",
-    url="https://github.com/Ext-Creators/discord-ext-ipc",
+    url="https://github.com/FrostiiWeeb/discord-ext-ipc",
     version=version,
 )
