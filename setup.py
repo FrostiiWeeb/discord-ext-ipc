@@ -45,8 +45,8 @@ packages = [
 
 project_urls = {
     "Documentation": "https://discord-ext-ipc.readthedocs.io",
-    "Issue Tracker": "https://github.com/FrostiiWeeb/discord-ext-ipc/issues",
-    "Source": "https://github.com/FrostiiWeeb/discord-ext-ipc",
+    "Issue Tracker": "https://github.com/FrostiiWeeb/discord-next-ipc/issues",
+    "Source": "https://github.com/FrostiiWeeb/discord-next-ipc",
 }
 
 _version_regex = r"^version = ('|\")((?:[0-9]+\.)*[0-9]+(?:\.?([a-z]+)(?:\.?[0-9])?)?)\1$"
@@ -84,6 +84,6 @@ setuptools.setup(
     packages=packages,
     project_urls=project_urls,
     python_requires=">=3.8.0",
-    url="https://github.com/FrostiiWeeb/discord-ext-ipc",
+    url="https://github.com/FrostiiWeeb/discord-next-ipc",
     version=version,
 )
