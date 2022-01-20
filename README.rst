@@ -44,7 +44,7 @@ Installation
 
 .. code-block:: sh
 
-    pip install --upgrade discord-ext-ipc
+    pip install --upgrade discord-next-ipc
 
 
 See Also
