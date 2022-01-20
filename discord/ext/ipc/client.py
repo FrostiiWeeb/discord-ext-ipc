@@ -2,6 +2,7 @@ import asyncio
 import logging
 import typing
 
+import fastapi
 import aiohttp
 from discord.ext.ipc.errors import *
 
@@ -22,7 +23,7 @@ class Client:
         The secret key for your IPC server. Must match the server secret_key or requests will not go ahead, defaults to None
     """
 
-    def __init__(self, host="localhost", port=None, multicast_port=20000, secret_key=None):
+    def __init__(self, host="localhost", port=None, secret_key=None):
         """Constructor"""
         self.loop = asyncio.get_event_loop()
 
@@ -35,12 +36,11 @@ class Client:
 
         self.websocket = None
         self.multicast = None
-
-        self.multicast_port = multicast_port
+        self.rep = 8765
 
     @property
     def url(self):
-        return "ws://{0.host}:{1}".format(self, self.port if self.port else self.multicast_port)
+        return "ws://{0.host}:{1}".format(self, self.port if self.port else self.rep)
 
     async def init_sock(self):
         """Attempts to connect to the server
@@ -55,27 +55,31 @@ class Client:
 
         if not self.port:
             log.debug(
-                "No port was provided - initiating multicast connection at %s.",
+                "No port was provided - initiating port receive at %s.",
                 self.url,
             )
-            self.multicast = await self.session.ws_connect(self.url, autoping=False)
+            self.reconnect = await self.session.ws_connect(self.url, autoping=False)
 
             payload = {"connect": True, "headers": {"Authorization": self.secret_key}}
-            log.debug("Multicast Server < %r", payload)
+            log.debug("Server < %r", payload)
 
-            await self.multicast.send_json(payload)
-            recv = await self.multicast.receive()
+            await self.reconnect.send_json(payload)
+            recv = await self.reconnect.receive()
 
-            log.debug("Multicast Server > %r", recv)
+            log.debug("Server > %r", recv)
 
             if recv.type in (aiohttp.WSMsgType.CLOSE, aiohttp.WSMsgType.CLOSED):
                 log.error(
                     "WebSocket connection unexpectedly closed. Multicast Server is unreachable."
                 )
-                raise NotConnected("Multicast server connection failed.")
+                raise NotConnected("Server connection failed.")
 
             port_data = recv.json()
-            self.port = port_data["port"]
+            try:
+                self.port = port_data["port"]
+            except KeyError:
+                await self.session.close()
+                raise NotConnected("Invalid or no token provided.")
 
         self.websocket = await self.session.ws_connect(self.url, autoping=False, autoclose=False)
         log.info("Client connected to %s", self.url)

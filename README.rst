@@ -1,7 +1,7 @@
 .. raw :: html
 
     <h1 align="center">As of the 28th August 2021 discord-ext-ipc is no-longer maintained.</h1>
-    <h1 align="center">As of today, i will be continuing discord.ext.ipc by making a fork of it.</h1>
+    <h1 align="center">As of today, i will be continuing discord.ext.ipc by making a fork of it and will be rewriting it using FastAPI.</h1>
     <br>
 
 .. raw:: html
@@ -51,7 +51,7 @@ See Also
 --------
 
 - The `documentation <https://ext-creators.github.io/docs/ipc/>`_.
-- The `usage examples <https://github.com/Ext-Creators/discord-ext-ipc/tree/master/examples>`_.
+- The `usage examples <https://github.com/FrostiiWeeb/discord-ext-ipc/tree/master/examples>`_.
 - The `Ext-Creators Discord <https://discord.gg/fwYfYZJGck>`_.
 
 .. raw :: html
