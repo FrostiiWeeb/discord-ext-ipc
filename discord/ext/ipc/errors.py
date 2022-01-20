@@ -6,6 +6,10 @@ class IPCError(DiscordException):
 
     pass
 
+class MethodNotFork(IPCError):
+    """Raised when upon a method/attribute is not found"""
+    
+    pass
 
 class NoEndpointFoundError(IPCError):
     """Raised upon requesting an invalid endpoint"""
