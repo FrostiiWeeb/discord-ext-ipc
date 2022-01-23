@@ -36,8 +36,14 @@ extras_require = {
     ],
 }
 
-with open("requirements.txt") as stream:
-    install_requires = stream.read().splitlines()
+install_requires = """
+discord.py
+fastapi
+uvicorn
+unsync
+uvloop
+"""
+install_requires = install_requires.splitlines()
 
 packages = [
     "discord.ext.ipc",
