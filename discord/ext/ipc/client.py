@@ -75,7 +75,6 @@ class Client:
                 raise NotConnected("Server connection failed.")
 
             port_data = recv.json()
-            print(port_data)
             try:
                 self.port = port_data["port"]
             except KeyError:
