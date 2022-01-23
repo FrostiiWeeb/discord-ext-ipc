@@ -12,5 +12,5 @@ Docs will stay the same.
 
 _VersionInfo = collections.namedtuple("_VersionInfo", "major minor micro release serial")
 
-version = "2.1.2"
-version_info = _VersionInfo(2, 1, 2, "final", 0)
+version = "2.1.3"
+version_info = _VersionInfo(2, 1, 3, "final", 0)
