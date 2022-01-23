@@ -122,7 +122,7 @@ class Server:
         """Starts the application server"""
         self.bot.dispatch("ipc_app_ready", app=application)
         log.info("IPC Application running")
-        return uvicorn.run(host=self.host, port=self.port, app=application, loop="uvloop")
+        return uvicorn.run(host=self.host, port=self.port, app=application, loop="uvloop", ws="wsproto")
 
     def start(self):
         """Starts the IPC server and handles websocket requests/endpoint requests."""
