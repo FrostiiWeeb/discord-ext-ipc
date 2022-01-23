@@ -1,5 +1,5 @@
 discord.py
 fastapi
-git+https://github.com/FrostiiWeeb/uvicorn
+uvicorn
 unsync
 uvloop
