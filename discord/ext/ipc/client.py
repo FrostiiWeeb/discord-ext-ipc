@@ -58,7 +58,7 @@ class Client:
                 "No port was provided - initiating port receive at %s.",
                 self.url,
             )
-            self.reconnect = await self.session.ws_connect(self.url, autoping=False)
+            self.reconnect = await self.session.ws_connect(self.url)
 
             payload = {"connect": True, "headers": {"Authorization": self.secret_key}}
             log.debug("Server < %r", payload)
